@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Sensitive
+*.key
+*.pem
+.env
+
+# Scan results
+output/
+reports/
+*.txt
