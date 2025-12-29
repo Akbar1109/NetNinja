@@ -4,7 +4,7 @@ clear
 echo -e "\033[1;32m"
 figlet -f standard "NetNinja"
 echo -e "\033[0m"
-echo -e "\033[1;31mNetworking made Simple :)                    {Author:Mhd._.akbar}\033[0m"
+echo -e "\033[1;31mNetworking made Simple :)                    {By:Mhd._.akbar}\033[0m"
 echo "version 1.0 , more tools will be added!!"
 echo "select an option:"
 echo "[1] Network discovery"
