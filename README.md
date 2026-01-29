@@ -26,6 +26,8 @@ cd NetNinja
 chmod +x netninja.sh
 ./netninja.sh
 ```
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/8af9930f-18e8-432f-9f8f-3affce0e1aa2" />
+
 
  ### More tools will bbe added in upcoming updates 
  ### NetNinja V2.0
