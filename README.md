@@ -8,7 +8,7 @@ NetNinja is a comprehensive network reconnaissance tool that combines multiple n
 - **Service Detection**: Determine service versions and configurations
 - **Quick Scanning**: Fast network assessment options
 - **User-Friendly CLI**: Color-coded, intuitive interface
-- - **A subnet calculator**:everything!for networking.
+- **A subnet calculator**:everything!for networking.
 
 ## 📦 Installation
 
