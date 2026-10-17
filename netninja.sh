@@ -1,4 +1,63 @@
 #!/bin/bash
+check_dependencies() {
+    local missing=()
+
+    for pkg in toilet nmap; do
+        if ! command -v "$pkg" >/dev/null 2>&1; then
+            echo -e "\033[1;31m[!] $pkg is not installed.\033[0m"
+            missing+=("$pkg")
+        else
+            echo -e "\033[1;32m[+] $pkg is already installed.\033[0m"
+        fi
+    done
+
+    if [ ${#missing[@]} -eq 0 ]; then
+        echo -e "\033[1;32mAll dependencies are installed!\033[0m"
+        return 0
+    fi
+
+    echo -e "\033[1;33mInstalling missing dependencies...\033[0m"
+
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update -qq &&
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${missing[@]}"
+
+    elif command -v dnf >/dev/null 2>&1; then
+        sudo dnf install -y "${missing[@]}"
+
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install -y "${missing[@]}"
+
+    elif command -v pacman >/dev/null 2>&1; then
+        sudo pacman -Sy --noconfirm --needed "${missing[@]}"
+
+    elif command -v apk >/dev/null 2>&1; then
+        sudo apk add --no-interactive "${missing[@]}"
+
+    elif command -v zypper >/dev/null 2>&1; then
+        sudo zypper --non-interactive install "${missing[@]}"
+
+    else
+        echo -e "\033[1;31mERROR: Unsupported package manager!\033[0m"
+        return 1
+    fi
+
+    if [ $? -ne 0 ]; then
+        echo -e "\033[1;31mERROR: Dependency installation failed!\033[0m"
+        exit 1
+    fi
+
+    for pkg in "${missing[@]}"; do
+        if ! command -v "$pkg" >/dev/null 2>&1; then
+            echo -e "\033[1;31mERROR: $pkg is still missing!\033[0m"
+            exit 1
+        fi
+    done
+
+    echo -e "\033[1;32mAll dependencies installed successfully!\033[0m"
+}
+check_dependencies || exit 1
+
 clear
 
 echo -e "\033[1;32m"
